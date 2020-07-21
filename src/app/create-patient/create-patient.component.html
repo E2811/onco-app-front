@@ -1,0 +1,80 @@
+<form [formGroup]="patientForm" (ngSubmit)="createPatient()">
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Ex. Pepe Pérez" formControlName="name" />
+        <mat-error *ngIf="name.invalid">
+          Please enter a valid name
+        </mat-error>
+      </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Ex. pepePerez" formControlName="username" />
+        <mat-error *ngIf="username.invalid">
+            Please enter a valid username
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Ex. password" formControlName="password" />
+        <mat-error *ngIf="password.invalid">
+            Please enter a valid password
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. pepe@gmail.com" formControlName="email" />
+        <mat-error *ngIf="email.invalid">
+            Please enter a valid email
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Ex. 698745123" formControlName="phone" />
+        <mat-error *ngIf="phone.invalid">
+            Please enter a valid phone number
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Sex</mat-label>
+      <mat-select formControlName="sex">
+        <mat-option *ngFor="let sex of sex" [value]="sex.value">
+          {{ sex.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Weight</mat-label>
+      <input matInput placeholder="Ex. 65" formControlName="weight" />
+      <mat-error *ngIf="weight.invalid">
+        Please enter a valid weight
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Height</mat-label>
+      <input matInput placeholder="Ex. 172" formControlName="height" />
+      <mat-error *ngIf="height.invalid">
+        Please enter a valid height
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>doctor</mat-label>
+        <input matInput placeholder="Ex. 1" formControlName="doctor" />
+        <mat-error *ngIf="height.invalid">
+          Please enter a valid docor Id
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Birthday</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="birthday" >
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="patientForm.invalid"
+    >
+      Create
+    </button>
+  </form>
