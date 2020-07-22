@@ -1,11 +1,61 @@
 <div class="header-title">
   <span class="container-title">Evaluations Report</span>
-  <button (click)="openDialog(evaluationsCompleted[0].patient)" mat-fab color="primary">
+  <button (click)="openDialog()" mat-fab color="primary">
     <mat-icon>add</mat-icon>
   </button>
 </div>
 <mat-divider class="divider"></mat-divider>
-
+<span class="post-title" *ngIf="evaluations.length>0">Patient Report</span>
+<mat-table
+  *ngIf="evaluations.length>0"
+  [dataSource]="evaluations"
+  class="mat-elevation"
+>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      ID
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-mini-fab *ngIf="element.evaluated" (click)="showResult(element.id)" id="delete-button">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+      {{ element.id }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="intake">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Intake
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.intake }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="symptoms">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Symptoms
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.symptoms }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Weight
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ecog">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Ecog
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.ecog }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="review">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Review
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.review }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumnsIncomplete"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumnsIncomplete"></mat-row>
+</mat-table>
+<span class="post-title" *ngIf="evaluationsCompleted.length>0">Patient Report Completed By Doctor</span>
 <mat-table
   *ngIf="evaluationsCompleted.length>0"
   [dataSource]="evaluationsCompleted"

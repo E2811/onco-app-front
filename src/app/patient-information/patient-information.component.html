@@ -3,7 +3,7 @@
 </div>
 <mat-divider class="divider"></mat-divider>
 
-<mat-card *ngIf="patient" class="example-card">
+<mat-card *ngIf="patient.length>0" class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{ patient[0].name}} </mat-card-title>
@@ -23,9 +23,14 @@
         {{ patient[0].phone}}
       </p>
     </ul>
+  </mat-card-content>
+<div>
+  
+</div>
+</mat-card>
 
     <mat-table
-  *ngIf="patient"
+  *ngIf="patient.length>0"
   [dataSource]="patient"
   class="mat-elevation"
 >
@@ -70,8 +75,6 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-  </mat-card-content>
-</mat-card>
 
 
 

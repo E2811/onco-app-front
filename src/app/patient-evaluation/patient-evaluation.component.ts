@@ -46,9 +46,9 @@ export class PatientEvaluationComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.id);
     this.pEvaluationForm = this.fb.group({
-      intake: [''],
-      symptoms: [''],
-      ecog: [''],
+      intake: ['', [Validators.required]],
+      symptoms: ['', [Validators.required]],
+      ecog: ['', [Validators.required]],
       weight: ['', [Validators.required, Validators.min(0), Validators.pattern(/[0-9]/)]],
       patient: this.data.id,
     });

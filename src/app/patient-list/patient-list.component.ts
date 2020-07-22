@@ -6,13 +6,20 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { CreatePatientComponent } from '../create-patient/create-patient.component';
 import { DataService } from 'src/services/data.service';
 import { Doctor } from '../model/doctor.model';
 import {Evaluation} from '../model/evaluation.mode';
-import { PatientEvaluationComponent } from '../patient-evaluation/patient-evaluation.component';
+import {PatientEvaluation} from '../model/patient-evaluation.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {DoctorEvaluationComponent} from '../doctor-evaluation/doctor-evaluation.component';
 import {SelectPatientComponent} from '../select-patient/select-patient.component';
+import { Result } from '../model/result.model';
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -20,6 +27,8 @@ import {SelectPatientComponent} from '../select-patient/select-patient.component
 })
 
 export class PatientListComponent implements OnInit {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   public showFindAll: boolean = true;
   public showCompleteEvaluation: boolean = false;
   public showEvaluation: boolean = false;
@@ -29,10 +38,16 @@ export class PatientListComponent implements OnInit {
   usernameAvailable: string[] = [];
   newPatient: Patient;
   displayedColumns = ['id', 'name', 'username', 'email', 'phone', 'sex', 'weight', 'height', 'birthday'];
+  displayedColumnsComp = ['id', 'intake', 'symptoms', 'weight', 'ecog', 'metabolic', 'category', 'review', 'patient'];
+  displayedColumnsResult = ['imc', 'bodySurface', 'weightLoss', 'caloriesNeeded'];
+  displayedColumnsEval = ['id', 'intake', 'symptoms', 'weight', 'ecog', 'review', 'patient'];
   evaluationsCompleted: Evaluation[] = [];
-
+  evaluations: PatientEvaluation[] = [];
+  message: string = 'Evaluation Completed';
+  result: Result[] = [];
   constructor(private service: RequestService,
               private dialog: MatDialog,
+              private snackBar: MatSnackBar,
               private dataService: DataService,
               private modalService: NgbModal) { }
 
@@ -45,7 +60,7 @@ export class PatientListComponent implements OnInit {
       (err) => {
         console.log(err);
       }
-    ); 
+    );
   }
   findPatients(doctor){
     this.showFindAll = true;
@@ -54,7 +69,6 @@ export class PatientListComponent implements OnInit {
         this.patients = res;
         this.allPatients = res;
         this.patients.forEach(patient => this.usernameAvailable.push(patient.username));
-        console.log(this.usernameAvailable);
       },
       (err) => {
         console.log(err);
@@ -110,8 +124,8 @@ export class PatientListComponent implements OnInit {
   }
 
   findCompleteEvaluations(usernameSelected: string[]){
-    console.log(usernameSelected);
     this.showCompleteEvaluation = true;
+    this.showEvaluation = false;
     usernameSelected.forEach(element => {
       this.service.getRequest('evaluation/find_by_patient/completed/' + element).subscribe(
         (res) => {
@@ -125,18 +139,75 @@ export class PatientListComponent implements OnInit {
     });
   }
 
-  openDialogUsername(): void {
+  findEvaluations(usernameSelected: string[]){
+    this.showEvaluation = true;
+    this.showCompleteEvaluation = false;
+    console.log(usernameSelected);
+    usernameSelected.forEach(element => {
+      this.service.getRequest('evaluation/find_by_patient/' + element).subscribe(
+        (res) => {
+          this.evaluations = res;
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
+  }
+
+  openDialogUsername(option): void {
     const dialogRef = this.dialog.open(SelectPatientComponent, {
-      data: { username: this.usernameAvailable },
+      data: this.usernameAvailable ,
       height: '400px',
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result && option === 1) {
         this.findCompleteEvaluations(result);
+      } else if (result && option === 2){
+        this.findEvaluations(result);
+      }
+    });
+  }
+  evaluate(id): void {
+    const dialogRef = this.dialog.open(DoctorEvaluationComponent, {
+      data: { id},
+      height: '400px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result) {
+        this.openSnackBar();
+        this.evaluations = this.evaluations.filter((evaluations) => id !== evaluations.id);
       }
     });
   }
 
+  openSnackBar() {
+    this.snackBar.open(this.message, 'Close', {
+      duration: 2000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      panelClass: ['first-class'],
+    });
+  }
+
+  showResult(id){
+    this.service.getRequest('result/find_by_evaluation/' + id).subscribe(
+      (res) => {
+        this.result = [res];
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  openDialogAppointment(){
+    
+  }
 }

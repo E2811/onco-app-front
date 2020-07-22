@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   messageError: string;
   tokenType: string;
   isLogged: boolean;
+  hide = true;
 
   constructor(
     private fb: FormBuilder,
@@ -54,7 +55,13 @@ export class LoginComponent implements OnInit {
       this.dialogRef.close();
       this.isLogged = true;
       this.authStateChange();
-      this.router.navigate(['patient']);
+      if (this.dataService.getRoleValue() === 'ROLE_ADMIN'){
+        this.router.navigate(['patient']);
+      }else  if (this.dataService.getRoleValue() === 'ROLE_DOCTOR'){
+        this.router.navigate(['information']);
+      }else if (this.dataService.getRoleValue() === 'ROLE_PATIENT'){
+        this.router.navigate(['information-doctor']);
+      }
     } catch (error) {
       this.hasError = true;
       this.messageError = error;

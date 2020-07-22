@@ -22,7 +22,7 @@ export class CreatePatientComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientForm = this.fb.group({
-      sex: [''],
+      sex: ['', Validators.required],
       birthday: ['', Validators.required],
       name: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(4)]],

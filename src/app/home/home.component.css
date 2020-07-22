@@ -1,0 +1,78 @@
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .main-container {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    background-color: #ffb85c;
+    background-image: url("../../assets/adn.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  
+  .home-divider {
+    height: 10px;
+  }
+  
+  .left-half {
+    flex: 1;
+    padding: 5%;
+  }
+  
+  div.c {
+    width: 40%;
+    font-size: 300%;
+  }
+  
+  .c p {
+    color: #ea7e63;
+  }
+  
+  .c h1 {
+    color: #c5fcee;
+    background-color: #ea7e63;
+    padding: 30px;
+    border-radius: 50px;
+  }
+  
+  .right-half {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .nav-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .nav-title {
+    color: whitesmoke;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+  }
+  
+  .nav-toolbar {
+    background-color: #ea7e63;
+  }
+  
+  #login-button {
+    background-color: #00c9a3 !important;
+  }
+  
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    margin: 5px 48%;
+    border-radius: 50%;
+  }
+  
+  .fa-github {
+    background: #c5fcee;
+    color: white;
+  }
+  

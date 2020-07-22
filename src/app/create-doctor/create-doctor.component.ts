@@ -24,7 +24,7 @@ export class CreateDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.doctorForm = this.fb.group({
-      specialty: [''],
+      specialty: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(5)]],

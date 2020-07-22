@@ -1,1 +1,26 @@
-<p>doctor-evaluation works!</p>
+<form [formGroup]="doctorEvaluationForm" (ngSubmit)="createDoctorEvaluation()">
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Metabolic</mat-label>
+      <mat-select formControlName="metabolic">
+        <mat-option *ngFor="let metabolic of metabolic" [value]="metabolic.value">
+          {{ metabolic.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+    <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of category" [value]="category.value">
+          {{ category.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="doctorEvaluationForm.invalid"
+    >
+      Complete Evaluation
+    </button>
+  </form>

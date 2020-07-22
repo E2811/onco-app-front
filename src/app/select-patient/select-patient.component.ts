@@ -17,9 +17,7 @@ export class SelectPatientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usernameAvailable = Object.values(this.data);
-    console.log('entra');
-    console.log(this.usernameAvailable);
+    this.usernameAvailable = this.data;
   }
 
   onNoClick(): void {
@@ -27,8 +25,6 @@ export class SelectPatientComponent implements OnInit {
   }
 
   sendSelected(){
-    console.log('aqui');
-    console.log(this.usernameSelected.value);
     this.dialogRef.close(this.usernameSelected.value);
   }
 
