@@ -41,7 +41,14 @@ import { DoctorInformationComponent } from './doctor-information/doctor-informat
 import { PatientListComponent } from './patient-list/patient-list.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SelectPatientComponent } from './select-patient/select-patient.component'; 
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +93,8 @@ import { SelectPatientComponent } from './select-patient/select-patient.componen
     MatCardModule,
     MatExpansionModule,
     NgbModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FullCalendarModule
   ],
   providers: [
     {
