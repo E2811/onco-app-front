@@ -9,6 +9,8 @@ import {PatientInformationComponent} from './patient-information/patient-informa
 import {HomeComponent} from './home/home.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { CalendaryComponent } from './calendary/calendary.component';
+import {DoctorInformationComponent} from './doctor-information/doctor-information.component';
+import {PatientListComponent} from './patient-list/patient-list.component';
 
 
 const routes: Routes = [
@@ -47,6 +49,16 @@ const routes: Routes = [
   {
     path: 'calendary',
     component: CalendaryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'patients',
+    component: PatientListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'information-doctor',
+    component: DoctorInformationComponent,
     canActivate: [AuthGuard]
   }
 ];

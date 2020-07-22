@@ -16,7 +16,7 @@ export class CreateDoctorComponent implements OnInit {
     {value: 'HAEMATOLOGIST', viewValue: 'Hematologist'},
     {value: 'GYNECOLOGY', viewValue: 'Ginecology'},
     {value: 'PEDIATRICIAN', viewValue: 'Pediatrician'},
-    {value: 'Orthopedist', viewValue: 'Orthopedist'}
+    {value: 'ORTHOPEDIST', viewValue: 'Orthopedist'}
   ];
 
   constructor(private fb: FormBuilder, private service: RequestService,

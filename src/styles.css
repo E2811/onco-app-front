@@ -27,7 +27,7 @@ body {
   justify-content: space-between;
   align-items: center;
   max-height: 70px;
-  color: #274879;
+  color: #4e8075;
 }
 
 button {
@@ -93,18 +93,13 @@ h4 {
   background: #b9536b;
 }
 
-/*.cdk-global-overlay-wrapper,
-.cdk-overlay-container {
-  z-index: 99999 !important;
-}*/
-
 h1 {
   font-size: 100%;
   width: 100%;
 }
 
 button {
-  background-color: #31254f !important;
+  background-color: #006d9d !important;
 }
 
 button:disabled {

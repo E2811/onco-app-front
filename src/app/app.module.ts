@@ -37,7 +37,10 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CalendaryComponent } from './calendary/calendary.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { DoctorInformationComponent } from './doctor-information/doctor-information.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SelectPatientComponent } from './select-patient/select-patient.component'; 
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SidebarDoctorComponent,
     PatientInformationComponent,
     EvaluationComponent,
-    CalendaryComponent
+    CalendaryComponent,
+    DoctorInformationComponent,
+    PatientListComponent,
+    SelectPatientComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatMenuModule,
     MatCardModule,
     MatExpansionModule,
-    NgbModule
+    NgbModule,
+    MatCheckboxModule
   ],
   providers: [
     {

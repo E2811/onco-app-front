@@ -1,1 +1,26 @@
-<p>sidebar-doctor works!</p>
+<main class="main">
+    <aside class="app-sidebar">
+      <nav class="app-nav">
+        <ul *ngFor="let menuItem of menuItems">
+          <li [ngClass]="{ active: clickedItem === menuItem.title }">
+            <a
+              (click)="changeActive(menuItem.title)"
+              data-value="{{ menuItem.title }}"
+              routerLink="{{ menuItem.path }}"
+              >{{ menuItem.title }}</a
+            >
+          </li>
+        </ul>
+        <div class="app-sidebar-footer">
+          <a id="logout-button" mat-fab (click)="logout()">
+            <mat-icon>logout</mat-icon>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <section>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </main>

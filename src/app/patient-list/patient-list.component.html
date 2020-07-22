@@ -1,0 +1,154 @@
+<div class="header-title">
+    <span class="container-title">Patient Information</span>
+    <button (click)="openDialog()" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" id="convert-button">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button (click)="openDialogUsername()" mat-menu-item>
+        <mat-icon>playlist_add_check</mat-icon>
+        <span>Show complete evaluation</span>
+      </button>
+      <button (click)="openDialogId(content)" mat-menu-item disabled>
+        <mat-icon>swap_vert</mat-icon>
+        <span>Evaluate</span>
+      </button>
+    </mat-menu>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
+  </mat-form-field>
+  <mat-table
+    *ngIf="patients.length != 0"
+    [dataSource]="patients"
+    class="mat-elevation"
+  >
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-mini-fab (click)="delete(element.id)" id="delete-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+        {{ element.id }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Username
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Phone
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.phone }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="sex">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Sex
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sex }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Weight
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="height">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Height
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.height }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="birthday">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Birthday
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.birthday }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-table
+  *ngIf="evaluationsCompleted.length>0"
+  [dataSource]="evaluationsCompleted"
+  class="mat-elevation"
+>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      ID
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-mini-fab *ngIf="element.evaluated" (click)="showResult(element.id)" id="delete-button">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+      {{ element.id }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="intake">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Intake
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.intake }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="symptoms">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Symptoms
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.symptoms }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Weight
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ecog">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Ecog
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.ecog }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="metabolic">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Metabolic
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.metabolic }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Category
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.category }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="review">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Review
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.review }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
