@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PatientComponent } from './patient/patient.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthGuard } from './auth.guard';
@@ -25,6 +25,19 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
+import { DoctorComponent } from './doctor/doctor.component';
+import { DoctorEvaluationComponent } from './doctor-evaluation/doctor-evaluation.component';
+import { PatientEvaluationComponent } from './patient-evaluation/patient-evaluation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidebarPatientComponent } from './sidebar-patient/sidebar-patient.component';
+import { SidebarDoctorComponent } from './sidebar-doctor/sidebar-doctor.component';
+import { PatientInformationComponent } from './patient-information/patient-information.component';
+import {MatCardModule} from '@angular/material/card';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { CalendaryComponent } from './calendary/calendary.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +47,16 @@ import {MatMenuModule} from '@angular/material/menu';
     SidebarComponent,
     PatientComponent,
     CreatePatientComponent,
-    CreateDoctorComponent
+    CreateDoctorComponent,
+    DoctorComponent,
+    DoctorEvaluationComponent,
+    PatientEvaluationComponent,
+    DashboardComponent,
+    SidebarPatientComponent,
+    SidebarDoctorComponent,
+    PatientInformationComponent,
+    EvaluationComponent,
+    CalendaryComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +76,17 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatExpansionModule,
+    NgbModule
   ],
-  providers: [AuthGuard,
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+    AuthGuard,
     MatDatepickerModule],
   bootstrap: [AppComponent]
 })

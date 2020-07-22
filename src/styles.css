@@ -1,4 +1,113 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Rosario", sans-serif;
+  font-size: 16px;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.divider {
+  background: linear-gradient(to right, #5e42a6, #b74e91);
+  height: 3px;
+  margin-bottom: 25px !important;
+}
+
+.container-title {
+  line-height: 5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.4em;
+  align-self: baseline;
+}
+
+.header-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 70px;
+  color: #274879;
+}
+
+button {
+  height: 50px;
+  line-height: 3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+button span {
+  color: white;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.form-input {
+  width: 100%;
+  line-height: 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-header {
+  background: #e0e0e0;
+}
+
+.modal-header-title {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  align-self: center;
+}
+
+.table-column-name {
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  background-color: #afa8ba;
+  color: white !important;
+}
+
+.mat-header-cell,
+.mat-cell {
+  justify-content: space-around;
+  border-left: 1px solid #e0e0e0;
+}
+
+h4 {
+  margin: 0;
+}
+
+.error-snackbar {
+  background: #b9536b;
+}
+
+/*.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  z-index: 99999 !important;
+}*/
+
+h1 {
+  font-size: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: #31254f !important;
+}
+
+button:disabled {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+}

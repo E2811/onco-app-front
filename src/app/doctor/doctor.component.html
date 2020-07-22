@@ -1,0 +1,51 @@
+<div class="header-title">
+    <span class="container-title">Doctors Information</span>
+    <button (click)="openDialog()" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  
+  
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
+  </mat-form-field>
+  <mat-table
+    *ngIf="doctors.length != 0"
+    [dataSource]="doctors"
+    class="mat-elevation"
+  >
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Username
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="specialty">
+        <mat-header-cell *matHeaderCellDef class="table-column-name">
+          Specialty
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.specialty }} </mat-cell>
+      </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>

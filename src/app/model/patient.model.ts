@@ -9,4 +9,4 @@ export interface Patient {
     height: number;
     birthday: string;
     doctor: number;
-  }
+}

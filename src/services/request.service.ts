@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +12,16 @@ export class RequestService {
   userRole: string;
   baseURL: string = 'http://localhost:8080/';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private router: Router, 
+              private httpClient: HttpClient) {}
 
   public setUser(user) {
     this.tokenType = user.tokenType;
     this.accessToken = user.accessToken;
     this.username = user.username;
     this.userRole = user.userRole;
+    localStorage.setItem('role', this.userRole);
+    localStorage.setItem('username', this.username);
   }
 
   public getToken() {
@@ -26,6 +30,12 @@ export class RequestService {
 
   public isAdmin() {
     return this.userRole === 'ROLE_ADMIN';
+  }
+  public getRole() {
+    return this.userRole;
+  }
+  public getUsername(){
+    return this.username;
   }
 
   public authRequest(data) {
@@ -45,6 +55,11 @@ export class RequestService {
   public logout() {
     this.tokenType = '';
     this.accessToken = '';
+    this.username = '';
+    this.userRole = '';
+    localStorage.removeItem('role');
+    localStorage.removeItem('username');
+    this.router.navigate(['/']);
   }
 
   public getRequest(url): any {

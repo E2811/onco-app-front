@@ -1,7 +1,14 @@
 <ng-container *ngIf="!loggedIn">
-  <app-home></app-home>
   <router-outlet></router-outlet>
 </ng-container>
-<ng-container *ngIf="loggedIn">
+<ng-container *ngIf="loggedIn && role=== 'ROLE_ADMIN'">
   <app-sidebar></app-sidebar>
+</ng-container>
+
+<ng-container *ngIf="loggedIn && role=== 'ROLE_PATIENT'">
+  <app-sidebar-patient></app-sidebar-patient>
+</ng-container>
+
+<ng-container *ngIf="loggedIn && role=== 'ROLE_DOCTOR'">
+  <app-sidebar-doctor></app-sidebar-doctor>
 </ng-container>

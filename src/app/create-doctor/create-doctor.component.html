@@ -1,1 +1,46 @@
-<p>create-doctor works!</p>
+<form [formGroup]="doctorForm" (ngSubmit)="createDoctor()">
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Ex. Pepe Pérez" formControlName="name" />
+        <mat-error *ngIf="name.invalid">
+          Please enter a valid name
+        </mat-error>
+      </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Ex. pepePerez" formControlName="username" />
+        <mat-error *ngIf="username.invalid">
+            Please enter a valid username
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Ex. password" formControlName="password" />
+        <mat-error *ngIf="password.invalid">
+            Please enter a valid password
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. pepe@gmail.com" formControlName="email" />
+        <mat-error *ngIf="email.invalid">
+            Please enter a valid email
+        </mat-error>
+        </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Specialty</mat-label>
+      <mat-select formControlName="sex">
+        <mat-option *ngFor="let specialty of specialty" [value]="specialty.value">
+          {{ specialty.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="doctorForm.invalid"
+    >
+      Create
+    </button>
+  </form>

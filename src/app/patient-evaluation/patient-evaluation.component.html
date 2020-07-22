@@ -1,0 +1,42 @@
+<p>patient-evaluation works!</p>
+<form [formGroup]="pEvaluationForm" (ngSubmit)="createPEvaluation()">
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Intake</mat-label>
+      <mat-select formControlName="intake">
+        <mat-option *ngFor="let intake of intake" [value]="intake.value">
+          {{ intake.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+    <mat-label>Symptoms</mat-label>
+      <mat-select formControlName="symptoms">
+        <mat-option *ngFor="let symptoms of symptoms" [value]="symptoms.value">
+          {{ symptoms.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+    <mat-label>Ecog</mat-label>
+      <mat-select formControlName="ecog">
+        <mat-option *ngFor="let ecog of ecog" [value]="ecog.value">
+          {{ ecog.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Weight</mat-label>
+      <input matInput placeholder="Ex. 65" formControlName="weight" />
+      <mat-error *ngIf="weight.invalid">
+        Please enter a valid weight
+      </mat-error>
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="pEvaluationForm.invalid"
+    >
+      Create Evaluation
+    </button>
+  </form>

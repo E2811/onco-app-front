@@ -1,19 +1,32 @@
 <div class="header-title">
-  <span class="container-title">Patient Information</span>
-  <button (click)="openDialog()" mat-fab color="primary">
-    <mat-icon>add</mat-icon>
-  </button>
+  <span class="container-title">Personal Information</span>
 </div>
 <mat-divider class="divider"></mat-divider>
 
+<mat-card *ngIf="patient" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ patient[0].name}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <p>
+        <mat-icon>person </mat-icon>
+        {{ patient[0].username}}
+      </p>
+      <p>
+        <mat-icon>email </mat-icon>
+        {{ patient[0].email}}
+      </p>
+      <p>
+        <mat-icon>contact_phone </mat-icon>
+        {{ patient[0].phone}}
+      </p>
+    </ul>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
-</mat-form-field>
-<mat-table
-  *ngIf="patients.length != 0"
-  [dataSource]="patients"
+    <mat-table
+  *ngIf="patient"
+  [dataSource]="patient"
   class="mat-elevation"
 >
   <ng-container matColumnDef="id">
@@ -21,35 +34,8 @@
       ID
     </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-mini-fab (click)="delete(element.id)" id="delete-button">
-        <mat-icon>delete</mat-icon>
-      </button>
       {{ element.id }}
     </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef class="table-column-name">
-      Name
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef class="table-column-name">
-      Username
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef class="table-column-name">
-      Email
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="phone">
-    <mat-header-cell *matHeaderCellDef class="table-column-name">
-      Phone
-    </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.phone }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="sex">
     <mat-header-cell *matHeaderCellDef class="table-column-name">
@@ -84,3 +70,8 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+  </mat-card-content>
+</mat-card>
+
+
+

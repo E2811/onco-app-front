@@ -84,5 +84,7 @@ export class LoginComponent implements OnInit {
 
   authStateChange() {
     this.dataService.changeState(true);
+    this.dataService.changeRole(this.service.getRole());
+    this.dataService.changeUsername(this.service.getUsername());
   }
 }

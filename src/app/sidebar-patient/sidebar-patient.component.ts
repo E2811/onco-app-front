@@ -4,13 +4,12 @@ import { RequestService } from 'src/services/request.service';
 import { DataService } from 'src/services/data.service';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: 'app-sidebar-patient',
+  templateUrl: './sidebar-patient.component.html',
+  styleUrls: ['./sidebar-patient.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarPatientComponent implements OnInit {
 
   menuItems: Array<object>;
   clickedItem: string = 'Patient';

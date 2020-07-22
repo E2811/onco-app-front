@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../model/patient.model';
 import { RequestService } from '../../services/request.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -76,14 +75,14 @@ export class PatientComponent implements OnInit {
   delete(id){
     this.service.deleteRequest('patient/' + id).subscribe(
       (data) => {
-        console.log(data);
+        console.log('entra');
+        this.patients = this.patients.filter((patient) => id !== patient.id);
         return data;
       },
       (error) => {
         console.log(error);
       }
     );
-    this.patients = this.patients.filter((patient) => id !== patient.id);
   }
 
 }

@@ -3,7 +3,6 @@ import { RequestService } from '../../services/request.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Filter } from '../model/filter.model';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-create-patient',
