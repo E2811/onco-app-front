@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
       this.authStateChange();
       if (this.dataService.getRoleValue() === 'ROLE_ADMIN'){
         this.router.navigate(['patient']);
-      }else  if (this.dataService.getRoleValue() === 'ROLE_DOCTOR'){
+      }else  if (this.dataService.getRoleValue() === 'ROLE_PATIENT'){
         this.router.navigate(['information']);
-      }else if (this.dataService.getRoleValue() === 'ROLE_PATIENT'){
+      }else if (this.dataService.getRoleValue() === 'ROLE_DOCTOR'){
         this.router.navigate(['information-doctor']);
       }
     } catch (error) {

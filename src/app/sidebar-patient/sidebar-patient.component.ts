@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SidebarPatientComponent implements OnInit {
 
   menuItems: Array<object>;
-  clickedItem: string = 'Patient';
+  clickedItem: string = 'Personal Information';
 
   constructor(
     private requestService: RequestService,

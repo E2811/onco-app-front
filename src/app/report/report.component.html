@@ -1,1 +1,22 @@
-<p>report works!</p>
+<span class="post-title">Information about Parameters</span>
+<mat-table *ngFor="let info of source"
+  [dataSource]="info.info"
+  class="mat-elevation"
+>
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      {{info.title}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.category }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Description
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.definition }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

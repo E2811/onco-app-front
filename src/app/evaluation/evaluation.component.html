@@ -1,8 +1,14 @@
 <div class="header-title">
   <span class="container-title">Evaluations Report</span>
-  <button (click)="openDialog()" mat-fab color="primary">
-    <mat-icon>add</mat-icon>
-  </button>
+  <div class="top-buttons">
+    <button  (click)="openDialog()" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button (click)="openDialogInfo()" mat-fab color="primary">
+      <mat-icon>info</mat-icon>
+    </button>
+  </div>
+  
 </div>
 <mat-divider class="divider"></mat-divider>
 <span class="post-title" *ngIf="evaluations.length>0">Patient Report</span>

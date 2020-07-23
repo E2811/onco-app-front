@@ -11,6 +11,7 @@ import { DataService } from 'src/services/data.service';
 import { PatientEvaluationComponent } from '../patient-evaluation/patient-evaluation.component';
 import { Patient } from '../model/patient.model';
 import { PatientEvaluation } from '../model/patient-evaluation.model';
+import { ReportComponent } from '../report/report.component';
 @Component({
   selector: 'app-evaluation',
   templateUrl: './evaluation.component.html',
@@ -90,6 +91,15 @@ export class EvaluationComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  openDialogInfo(): void {
+    const dialogRef = this.dialog.open(ReportComponent, {
+      data: {},
+      height: '800px',
+      width: '800px',
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
 }

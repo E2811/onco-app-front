@@ -3,25 +3,25 @@
   </div>
   <mat-divider class="divider"></mat-divider>
   
-  <mat-card *ngIf="doctor" class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title >{{ doctor.name}} </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <ul>
-        <p>
-          <mat-icon>person </mat-icon>
-          {{ doctor.username}}
-        </p>
-        <p>
-          <mat-icon>email </mat-icon>
-          {{ doctor.email}}
-        </p>
-        <p>
-          <mat-icon>contact_phone </mat-icon>
-          {{ doctor.specialty}}
-        </p>
-      </ul>
-    </mat-card-content>
-  </mat-card>
+<mat-card *ngIf="doctor" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title >{{ doctor.name}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <p>
+        <mat-icon>person </mat-icon>
+        {{ doctor.username}}
+      </p>
+      <p>
+        <mat-icon>email </mat-icon>
+        {{ doctor.email}}
+      </p>
+      <p>
+        <mat-icon>contact_phone </mat-icon>
+        {{ doctor.specialty}}
+      </p>
+    </ul>
+  </mat-card-content>
+</mat-card>

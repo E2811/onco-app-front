@@ -21,6 +21,7 @@ import {DoctorEvaluationComponent} from '../doctor-evaluation/doctor-evaluation.
 import {SelectPatientComponent} from '../select-patient/select-patient.component';
 import { Result } from '../model/result.model';
 import { CreateAppointmentComponent} from '../create-appointment/create-appointment.component';
+import { ReportComponent } from '../report/report.component';
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -229,5 +230,13 @@ export class PatientListComponent implements OnInit {
         this.openSnackBar('Appointment Created');
       }
     });
+  }
+  openDialogInfo(): void {
+    const dialogRef = this.dialog.open(ReportComponent, {
+      data: {},
+      height: '800px',
+      width: '800px',
+    });
+    dialogRef.afterClosed().subscribe();
   }
 }

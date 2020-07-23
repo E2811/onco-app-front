@@ -1,25 +1,30 @@
 <div class="header-title">
     <span class="container-title">Patient Information</span>
-    <button (click)="openDialog()" mat-fab color="primary">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-mini-fab [matMenuTriggerFor]="menu" id="convert-button">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button (click)="openDialogUsername(1)" mat-menu-item>
-        <mat-icon>playlist_add_check</mat-icon>
-        <span>Show complete evaluation</span>
+    <div class="top-buttons">
+      <button (click)="openDialog()" mat-fab color="primary">
+        <mat-icon>add</mat-icon>
       </button>
-      <button (click)="openDialogUsername(2)" mat-menu-item>
-        <mat-icon>swap_vert</mat-icon>
-        <span>Evaluate</span>
+      <button mat-fab [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button (click)="openDialogAppointment()" mat-menu-item>
-        <mat-icon>event_available</mat-icon>
-        <span>New Appointment</span>
+      <mat-menu #menu="matMenu">
+        <button (click)="openDialogUsername(1)" mat-menu-item>
+          <mat-icon>playlist_add_check</mat-icon>
+          <span>Show complete evaluation</span>
+        </button>
+        <button (click)="openDialogUsername(2)" mat-menu-item>
+          <mat-icon>swap_vert</mat-icon>
+          <span>Evaluate</span>
+        </button>
+        <button (click)="openDialogAppointment()" mat-menu-item>
+          <mat-icon>event_available</mat-icon>
+          <span>New Appointment</span>
+        </button>
+      </mat-menu>
+      <button (click)="openDialogInfo()" mat-fab color="primary">
+        <mat-icon>info</mat-icon>
       </button>
-    </mat-menu>
+    </div>
   </div>
   <mat-divider class="divider"></mat-divider>
 
