@@ -16,11 +16,11 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-witdh">
-        <mat-label>Revision Date</mat-label>
-        <input matInput [min]="minDate" [matDatepicker]="picker1" formControlName="revisionDate" >
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
+      <mat-label>Revision Date</mat-label>
+      <input matInput [min]="minDate"  [matDatepicker]="picker" formControlName="revisionDate" data-date-format='YYYY-MM-DD' >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <button
       type="submit"
       mat-raised-button

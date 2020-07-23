@@ -1,1 +1,121 @@
-<p>dashboard works!</p>
+<div class="header-title">
+  <span class="container-title">General Information</span>
+</div>
+<mat-divider class="divider"></mat-divider>
+
+
+<div *ngIf="datax.length > 0 && datay.length > 0">
+  <span class="post-title">Number of Patients representing different ECOG (activity)</span>
+  <div class="graficas-container">
+    <div class="grafica">
+      <echarts id="chart1"
+      *ngIf="datax.length > 0 && datay.length > 0"
+      [initOpts]="initOpts"
+      [options]="options"
+      ></echarts>
+    </div>
+      <div >
+          <table
+        mat-table
+        [dataSource]="filterList"
+        class="mat-elevation"
+      >
+        <!-- Id Column -->
+        <ng-container matColumnDef="Filter">
+          <mat-header-cell *matHeaderCellDef class="table-column-name">
+             Ecog Patients </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element[0] || "null" }} </mat-cell>
+        </ng-container>
+      
+        <!-- Product Column -->
+        <ng-container matColumnDef="Quantity">
+          <mat-header-cell *matHeaderCellDef class="table-column-name">
+            Quantity
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element[1] || "null" }} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="filterDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: filterDisplayedColumns"></mat-row>
+      </table>
+      </div>
+  </div>
+</div>
+
+
+<div *ngIf="datax1.length > 0 && datay1.length > 0">
+  <span class="post-title">Number of Patients affected by symptoms</span>
+  <div class="graficas-container">
+    <div class="graficas">
+      <echarts id="chart2"
+    *ngIf="datax1.length > 0 && datay1.length > 0"
+    [initOpts]="initOpts"
+    [options]="options2"
+  ></echarts>
+    </div>
+    <div>
+      <table
+    mat-table
+    [dataSource]="filterList"
+    class="mat-elevation"
+  >
+    <!-- Id Column -->
+    <ng-container matColumnDef="Filter">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+         Symptoms Patients </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element[0] || "null" }} </mat-cell>
+    </ng-container>
+  
+    <!-- Product Column -->
+    <ng-container matColumnDef="Quantity">
+      <mat-header-cell *matHeaderCellDef class="table-column-name">
+        Quantity
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element[1] || "null" }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="filterDisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: filterDisplayedColumns"></mat-row>
+  </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="datax2.length > 0 && datay2.length > 0">
+  <span class="post-title">Number of Patients per category</span>
+<div class="graficas-container">
+  <div class="graficas">
+    <echarts id="chart3"
+    *ngIf="datax2.length > 0 && datay2.length > 0"
+    [initOpts]="initOpts"
+    [options]="options3"
+  ></echarts>
+  </div>
+  <div>
+    <table
+  mat-table
+  [dataSource]="filterList"
+  class="mat-elevation"
+>
+  <!-- Id Column -->
+  <ng-container matColumnDef="Filter">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+       Category Patients </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element[0] || "null" }} </mat-cell>
+  </ng-container>
+
+  <!-- Product Column -->
+  <ng-container matColumnDef="Quantity">
+    <mat-header-cell *matHeaderCellDef class="table-column-name">
+      Quantity
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element[1] || "null" }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="filterDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: filterDisplayedColumns"></mat-row>
+</table>
+  </div>
+</div>
+</div>
+

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Filter } from '../model/filter.model';
 
 
@@ -11,7 +11,6 @@ import { Filter } from '../model/filter.model';
   styleUrls: ['./create-appointment.component.css']
 })
 export class CreateAppointmentComponent implements OnInit {
-
   appointmentForm: FormGroup;
   type: Filter[] = [
     {value: 'CHEMOTHERAPY', viewValue: 'Chemotherapy'},
@@ -50,4 +49,5 @@ export class CreateAppointmentComponent implements OnInit {
   get revisionDate() {
     return this.appointmentForm.get('revisionDate');
   }
+  
 }
