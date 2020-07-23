@@ -43,7 +43,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SelectPatientComponent } from './select-patient/select-patient.component'; 
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction';
+import { CreateAppointmentComponent } from './create-appointment/create-appointment.component'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -69,7 +70,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendaryComponent,
     DoctorInformationComponent,
     PatientListComponent,
-    SelectPatientComponent
+    SelectPatientComponent,
+    CreateAppointmentComponent
   ],
   imports: [
     BrowserModule,

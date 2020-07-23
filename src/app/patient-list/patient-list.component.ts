@@ -20,6 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DoctorEvaluationComponent} from '../doctor-evaluation/doctor-evaluation.component';
 import {SelectPatientComponent} from '../select-patient/select-patient.component';
 import { Result } from '../model/result.model';
+import { CreateAppointmentComponent} from '../create-appointment/create-appointment.component';
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -36,6 +37,7 @@ export class PatientListComponent implements OnInit {
   doctor: Doctor = null;
   allPatients: Patient[] = [];
   usernameAvailable: string[] = [];
+  idAvailable: number[] = [];
   newPatient: Patient;
   displayedColumns = ['id', 'name', 'username', 'email', 'phone', 'sex', 'weight', 'height', 'birthday'];
   displayedColumnsComp = ['id', 'intake', 'symptoms', 'weight', 'ecog', 'metabolic', 'category', 'review', 'patient'];
@@ -43,7 +45,6 @@ export class PatientListComponent implements OnInit {
   displayedColumnsEval = ['id', 'intake', 'symptoms', 'weight', 'ecog', 'review', 'patient'];
   evaluationsCompleted: Evaluation[] = [];
   evaluations: PatientEvaluation[] = [];
-  message: string = 'Evaluation Completed';
   result: Result[] = [];
   constructor(private service: RequestService,
               private dialog: MatDialog,
@@ -68,7 +69,10 @@ export class PatientListComponent implements OnInit {
       (res) => {
         this.patients = res;
         this.allPatients = res;
-        this.patients.forEach(patient => this.usernameAvailable.push(patient.username));
+        this.patients.forEach((patient) => {
+          this.usernameAvailable.push(patient.username);
+          this.idAvailable.push(patient.id);
+        });
       },
       (err) => {
         console.log(err);
@@ -88,6 +92,8 @@ export class PatientListComponent implements OnInit {
       if (result) {
         this.newPatient = result;
         this.patients = this.patients.concat(this.newPatient);
+        this.idAvailable = this.idAvailable.concat(this.newPatient.id);
+        this.usernameAvailable = this.usernameAvailable.concat(this.newPatient.username);
       }
     });
   }
@@ -115,6 +121,7 @@ export class PatientListComponent implements OnInit {
     this.service.deleteRequest('patient/' + id).subscribe(
       (data) => {
         this.patients = this.patients.filter((patient) => id !== patient.id);
+        this.idAvailable = this.idAvailable.filter((idAv) => idAv !== id);
         return data;
       },
       (error) => {
@@ -126,10 +133,11 @@ export class PatientListComponent implements OnInit {
   findCompleteEvaluations(usernameSelected: string[]){
     this.showCompleteEvaluation = true;
     this.showEvaluation = false;
+    this.evaluationsCompleted = [];
     usernameSelected.forEach(element => {
       this.service.getRequest('evaluation/find_by_patient/completed/' + element).subscribe(
         (res) => {
-          this.evaluationsCompleted = res;
+          this.evaluationsCompleted = this.evaluationsCompleted.concat(res);
           console.log(res);
         },
         (err) => {
@@ -142,12 +150,13 @@ export class PatientListComponent implements OnInit {
   findEvaluations(usernameSelected: string[]){
     this.showEvaluation = true;
     this.showCompleteEvaluation = false;
+    this.evaluations = [];
     console.log(usernameSelected);
     usernameSelected.forEach(element => {
       this.service.getRequest('evaluation/find_by_patient/' + element).subscribe(
         (res) => {
-          this.evaluations = res;
-          console.log(res);
+          this.evaluations = this.evaluations.concat(res);
+          this.evaluations = this.evaluations.filter( (evaluation) => evaluation.evaluated === false);
         },
         (err) => {
           console.log(err);
@@ -181,14 +190,14 @@ export class PatientListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
       if (result) {
-        this.openSnackBar();
+        this.openSnackBar('Evaluation Completed');
         this.evaluations = this.evaluations.filter((evaluations) => id !== evaluations.id);
       }
     });
   }
 
-  openSnackBar() {
-    this.snackBar.open(this.message, 'Close', {
+  openSnackBar(message) {
+    this.snackBar.open(message, 'Close', {
       duration: 2000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
@@ -208,6 +217,17 @@ export class PatientListComponent implements OnInit {
     );
   }
   openDialogAppointment(){
-    
+    const dialogRef = this.dialog.open(CreateAppointmentComponent, {
+      data: this.idAvailable,
+      height: '400px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result) {
+        this.openSnackBar('Appointment Created');
+      }
+    });
   }
 }

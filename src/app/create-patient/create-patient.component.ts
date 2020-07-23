@@ -16,11 +16,15 @@ export class CreatePatientComponent implements OnInit {
     {value: 'F', viewValue: 'Female'},
     {value: 'M', viewValue: 'Male'}
   ];
-
+  minDate: Date;
+  maxDate: Date;
   constructor(private fb: FormBuilder, private service: RequestService,
               private dialogRef: MatDialogRef<CreatePatientComponent>) { }
 
   ngOnInit(): void {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 120, 0, 1);
+    this.maxDate = new Date();
     this.patientForm = this.fb.group({
       sex: ['', Validators.required],
       birthday: ['', Validators.required],

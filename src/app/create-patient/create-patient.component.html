@@ -65,7 +65,7 @@
       </mat-form-field>
       <mat-form-field class="example-full-witdh">
         <mat-label>Birthday</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="birthday" >
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" formControlName="birthday" >
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>

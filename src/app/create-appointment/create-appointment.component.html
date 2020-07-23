@@ -1,0 +1,32 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
+    <mat-form-field class="example-full-witdh">
+      <mat-label>PatientId</mat-label>
+      <mat-select formControlName="patient">
+        <mat-option *ngFor="let id of data" [value]="id">
+          {{ id }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+      <mat-label>Type Treatment</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of type" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-witdh">
+        <mat-label>Revision Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="picker1" formControlName="revisionDate" >
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="appointmentForm.invalid"
+    >
+      Create
+    </button>
+  </form>

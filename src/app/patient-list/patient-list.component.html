@@ -227,7 +227,7 @@ class="mat-elevation"
 
 
 <!-- Result table per Evaluation-->
-<mat-accordion *ngIf="result.length >0">
+<mat-accordion *ngIf="evaluationsCompleted.length>0 && result.length >0 && showCompleteEvaluation">
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
