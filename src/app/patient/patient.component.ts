@@ -7,6 +7,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { CreatePatientComponent } from '../create-patient/create-patient.component';
+import { Doctor } from '../model/doctor.model';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -18,6 +19,8 @@ export class PatientComponent implements OnInit {
   allPatients: Patient[] = [];
   newPatient: Patient;
   displayedColumns = ['id', 'name', 'username', 'email', 'phone', 'sex', 'weight', 'height', 'birthday', 'doctor'];
+  idDoctors: number[];
+  doctors: Doctor[] = [];
 
   constructor(
     private service: RequestService,
@@ -30,6 +33,18 @@ export class PatientComponent implements OnInit {
         this.patients = res;
         this.allPatients = res;
         console.log(res);
+        this.getDoctors();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  getDoctors(){
+    this.service.getRequest('doctor/findAll').subscribe(
+      (res) => {
+        this.doctors = res;
+        this.idDoctors = this.doctors.map(doctor => doctor.id);
       },
       (err) => {
         console.log(err);
@@ -39,7 +54,7 @@ export class PatientComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreatePatientComponent, {
-      data: { },
+      data: this.idDoctors,
       height: '400px',
       width: '400px',
     });
@@ -75,7 +90,6 @@ export class PatientComponent implements OnInit {
   delete(id){
     this.service.deleteRequest('patient/' + id).subscribe(
       (data) => {
-        console.log('entra');
         this.patients = this.patients.filter((patient) => id !== patient.id);
         return data;
       },

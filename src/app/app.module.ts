@@ -44,6 +44,8 @@ import { SelectPatientComponent } from './select-patient/select-patient.componen
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
 import { ReportComponent } from './report/report.component'; // a plugin
 import * as echarts from 'echarts';
@@ -51,6 +53,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
   interactionPlugin
 ]);
 @NgModule({

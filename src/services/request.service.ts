@@ -10,7 +10,7 @@ export class RequestService {
   accessToken: string;
   username: string;
   userRole: string;
-  baseURL: string = 'http://localhost:8080/';
+  baseURL: string = 'https://onco-app-edge-service.herokuapp.com/';
 
   constructor(private router: Router, 
               private httpClient: HttpClient) {}

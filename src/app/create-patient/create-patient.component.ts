@@ -19,7 +19,8 @@ export class CreatePatientComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   constructor(private fb: FormBuilder, private service: RequestService,
-              private dialogRef: MatDialogRef<CreatePatientComponent>) { }
+              private dialogRef: MatDialogRef<CreatePatientComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ export class CreatePatientComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(5)]],
       weight: ['', [Validators.required, Validators.min(0), Validators.pattern(/[0-9]/)]],
       height: ['', [Validators.required, Validators.min(0), Validators.pattern(/[0-9]/)]],
-      doctor: ['', [Validators.required, Validators.min(0), Validators.pattern(/[0-9]/)]],
+      doctor: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]]
     });

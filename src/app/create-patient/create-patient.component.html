@@ -58,10 +58,11 @@
     </mat-form-field>
     <mat-form-field class="example-full-witdh">
         <mat-label>doctor</mat-label>
-        <input matInput placeholder="Ex. 1" formControlName="doctor" />
-        <mat-error *ngIf="height.invalid">
-          Please enter a valid docor Id
-        </mat-error>
+        <mat-select formControlName="doctor">
+        <mat-option *ngFor="let data of data" [value]="data">
+          {{ data }}
+        </mat-option>
+      </mat-select>
       </mat-form-field>
       <mat-form-field class="example-full-witdh">
         <mat-label>Birthday</mat-label>

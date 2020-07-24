@@ -11,5 +11,11 @@ export const ROUTES = [
     title: 'Dashboard',
     icon: 'notifications',
     active: true,
+  },
+  {
+    path: 'calendary',
+    title: 'Schedule',
+    icon: 'person',
+    active: false,
   }
 ];

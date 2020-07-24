@@ -39,6 +39,7 @@ export class PatientListComponent implements OnInit {
   allPatients: Patient[] = [];
   usernameAvailable: string[] = [];
   idAvailable: number[] = [];
+  idDoctor: number[];
   newPatient: Patient;
   displayedColumns = ['id', 'name', 'username', 'email', 'phone', 'sex', 'weight', 'height', 'birthday'];
   displayedColumnsComp = ['id', 'intake', 'symptoms', 'weight', 'ecog', 'metabolic', 'category', 'review', 'patient'];
@@ -57,6 +58,7 @@ export class PatientListComponent implements OnInit {
     this.service.getRequest('doctor/find_by_username/' + this.dataService.getUsernameValue()).subscribe(
       (res) => {
         this.doctor = res;
+        this.idDoctor = [this.doctor.id];
         this.findPatients(this.doctor);
       },
       (err) => {
@@ -83,7 +85,7 @@ export class PatientListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreatePatientComponent, {
-      data: { },
+      data: this.idDoctor,
       height: '400px',
       width: '400px',
     });
