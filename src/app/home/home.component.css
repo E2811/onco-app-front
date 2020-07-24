@@ -18,6 +18,9 @@ div {
   .home-divider {
     height: 10px;
   }
+  .home-divider p {
+    color: black;
+  }
   
   .left-half {
     flex: 1;
@@ -37,6 +40,7 @@ div {
     color: #c5fcee;
     background-color: #ea7e63;
     padding: 30px;
+    text-align: center;
     border-radius: 50px;
   }
   

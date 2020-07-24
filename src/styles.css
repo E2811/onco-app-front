@@ -113,3 +113,7 @@ button:disabled {
   background-color: #cccccc !important;
   color: #666666 !important;
 }
+.izquierda h2 {
+  text-align: center;
+  color: #ea7e63;
+}
